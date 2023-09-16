@@ -1,4 +1,5 @@
 "use client";
+import { usesActiveSectionContext } from "@/context/active-section-context";
 import { useSectionInView } from "@/lib/hooks";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import { HiDownload } from "react-icons/hi";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
+  const { setActiveSection, setTimeOfLastClick } = usesActiveSectionContext();
 
   return (
     <section
@@ -76,6 +78,10 @@ export default function Intro() {
           href={"#contact"}
           className="group bg-gray-950 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none 
           focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition cursor-pointer border border-black/10"
+          onClick={() => {
+            setActiveSection("Contact");
+            setTimeOfLastClick(Date.now());
+          }}
         >
           Contact me here{" "}
           <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
@@ -83,7 +89,7 @@ export default function Intro() {
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none 
-          focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer border border-black/10"
+          focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer border borderBlack dark:bg-white/10"
           href="/CV.pdf"
           download
         >
@@ -97,7 +103,7 @@ export default function Intro() {
           className="bg-white text-[1.35rem] 
         p-4 text-gray-700 flex items-center gap-2 rounded-full outline-none 
         focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950
-        active:scale-105 transition cursor-pointer border border-black/10"
+        active:scale-105 transition cursor-pointer border borderBlack dark:bg-white/10 dark:text-white/60"
         >
           <BsLinkedin />
         </Link>
@@ -108,7 +114,7 @@ export default function Intro() {
           className="bg-white text-[1.35rem] 
         p-4 text-gray-700 flex items-center gap-2 rounded-full outline-none 
         focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950
-        active:scale-105 transition cursor-pointer border border-black/10"
+        active:scale-105 transition cursor-pointer border borderBlack dark:bg-white/10 dark:text-white/60"
         >
           <FaGithubSquare />
         </Link>
